@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from lmfit import Parameters
 from lmfit import Model
 
-f, _, vrms, _, _, _, _, vrms2, pha = np.loadtxt("data2.txt", unpack=True, skiprows=3)  # loading first interval
+f, _, vrms, _, _, _, _, vrms2, pha = np.loadtxt("data/data2.txt", unpack=True, skiprows=3)  # loading first interval
 
 def lorentzian(f,a, fr, gamma):
     return a/(gamma**2+(f-fr)**2)
