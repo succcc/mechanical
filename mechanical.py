@@ -1,9 +1,9 @@
 import numpy as np
-import matplotlib.pyplot as plt
 from lmfit import Parameters
 from lmfit import Model
 import tkinter as tk
 from tkinter import filedialog
+import matplotlib.pyplot as plt
 
 root = tk.Tk()
 root.withdraw()
