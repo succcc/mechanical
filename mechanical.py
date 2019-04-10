@@ -26,15 +26,15 @@ fPeak = f[idMax]
 vrmsPeak = vrms2[idMax]
 mod = Model(lorentzian)
 parrs = Parameters()
-parrs.add('a', value=1, min=0,
-          max=100)
-parrs.add('fr', value=fPeak, min=fPeak-1*1000,
-          max=fPeak+1*1000)
-parrs.add('gamma', value=5, min=0,
+parrs.add('a', value=0.5, min=0,
+          max=1)
+parrs.add('fr', value=fPeak, min=fPeak-10*1000,
+          max=fPeak+10*1000)
+parrs.add('gamma', value=200, min=0,
           max=10000)
 
-parrs.add('c', value=0, min=-10,
-          max=10)
+parrs.add('c', value=0, min=-0.001,
+          max=0.001)
 
 result = mod.fit(vrms2, parrs, f=f) # fitting
 best_a = result.best_values['a']
@@ -48,7 +48,7 @@ qfactor = best_fr/2/best_gamma
 
 plt.subplot(2,1,1)
 plt.plot(f/1000, vrms2*1e6, "o")
-plt.plot(f/1000, lorentzian(f, best_a, best_fr, best_gamma, best_c)*1e6, "-r",lw=3, label="Q = {:0.2f}".format(qfactor))
+plt.plot(f/1000, lorentzian(f, best_a, best_fr, best_gamma, best_c)*1e6, "-r",lw=3, label="f = {:0.3f} kHz\n Q = {:0.2f}".format(best_fr/1000,qfactor))
 plt.ylabel(r"Signal (uV)", fontsize=18)
 # plt.yticks([],[],fontsize=18)
 plt.xticks([],[],fontsize=18)
